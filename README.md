@@ -8,6 +8,7 @@ Tomer Tcherniak
 
 # info
 
+```
 This lambda stack contains:
 1) calculate volumes to be deleted:
    volumes with status available and more than num days can be deleted as they are not used by any instance
@@ -16,9 +17,10 @@ This lambda stack contains:
 3) check reservation set up for each ec2 instance
 4) calculate images to be deleted:  
    images which are not used by any instance or launch config and more than num days can be deleted
-
+```
 # lambda environment variables
 
+```
 region      : "region to deploy this lambda to"
 memory_size : "size in MB to allocate to the Lambda for this function"
 timeout     : "default Timeout in Seconds before the Lambda is considered Failed"
@@ -26,7 +28,7 @@ use_profile : "use profile - used for debug , if would like to run from a local 
 delete_flag : "used for debug , if true - deletion is activated"
 days_count  : "Images more than X days which are not used by any instance will be notify as not used."
 regions_arr : "Run on all the the regions whcih are set"
-
+```
 
 # prerequisite
 
@@ -39,6 +41,7 @@ Terraform v1.1.4
 
 # slack info
 
+```
 Reservation slack info:
 eu-west-1 # ec2  # NoneReserved : Type m5, Running : 6
 eu-west-1 # ec2  # NoneReserved : Type r4, Running : 8
@@ -49,9 +52,11 @@ Debug Images removal AWS_REGION eu-west-1 CreationDate 2020-04-21T14:32:59.000Z,
 
 ASG slack info:
 ASG in eu-west-1 / accountid XXXXX , Instance count :0 , Creation Date :2019-09-12 13
+```
 
 # terrafrom Apply
 
+```
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
 
@@ -295,3 +300,4 @@ lambda_iam_role_name = "lambda-amis-autoscaling-to-be-deleted-eu-west-1-iam-role
 lambda_name = "lambda-amis-autoscaling-to-be-deleted"
 regions_arr = "eu-west-1,eu-central-1,ap-southeast-2,us-east-1,us-west-2,us-east-2"
 use_profile = "false"
+```
