@@ -28,7 +28,7 @@ def set_types():
 
 class Slack(object):
     def __init__(self):
-        self.slackurl = "https://hooks.slack.com/services/ChaneME"
+        self.slackurl = "https://hooks.slack.com/services/ChangeME"
         self.iconemoji = ":coin:"
         self.slackusername = "AMI Deletion / Reservation info"
 
