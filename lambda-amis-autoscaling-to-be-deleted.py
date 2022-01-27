@@ -47,7 +47,7 @@ class Slack(object):
 def calculate_volumes_to_be_deleted(use_profile,days_count, AWS_REGION, delete_flag, account_id):
     slackObject = Slack()
     if use_profile == "true":
-        boto3.setup_default_session(profile_name='rnd')
+        boto3.setup_default_session(profile_name='profile')
 
     ec2_client = boto3.client('ec2', region_name=AWS_REGION)
     available_vol_response = ec2_client.describe_volumes(
@@ -89,7 +89,7 @@ def calculate_volumes_to_be_deleted(use_profile,days_count, AWS_REGION, delete_f
 def calculate_autoscaling_to_be_deleted(use_profile, AWS_REGION, account_id):
     slackObject = Slack()
     if use_profile == "true":
-        boto3.setup_default_session(profile_name='rnd')
+        boto3.setup_default_session(profile_name='profile')
 
     client = boto3.client('autoscaling', region_name=AWS_REGION)
     autoscaler = client.describe_auto_scaling_groups()['AutoScalingGroups']
@@ -116,7 +116,7 @@ def calculate_amis_to_be_deleted(use_profile, days_count, AWS_REGION, delete_fla
     ami_age_limit = datetime.now() - timedelta(days=int(days_count))
     slackObject = Slack()
     if use_profile == "true":
-        boto3.setup_default_session(profile_name='rnd')
+        boto3.setup_default_session(profile_name='profile')
     client = boto3.client('autoscaling', region_name=AWS_REGION)
     response = client.describe_launch_configurations()
     launch_config_ami = []
@@ -177,7 +177,7 @@ def calculate_amis_to_be_deleted(use_profile, days_count, AWS_REGION, delete_fla
 def calculate_rds_ris(use_profile, region, rds_or_ec2):
     if use_profile == "true":
         print("using profile...")
-        boto3.setup_default_session(profile_name='rnd')
+        boto3.setup_default_session(profile_name='profile')
     rds_conn = boto3.client('rds', region_name=region)
     paginator = rds_conn.get_paginator('describe_db_instances')
     page_iterator = paginator.paginate()
@@ -205,7 +205,7 @@ def calculate_rds_ris(use_profile, region, rds_or_ec2):
 def calculate_ec2_ris(use_profile, region, rds_or_ec2):
     slackObject = Slack()
     if use_profile == "true":
-        boto3.setup_default_session(profile_name='rnd')
+        boto3.setup_default_session(profile_name='profile')
     ec2_conn = boto3.client('ec2', region_name=region)
     paginator = ec2_conn.get_paginator('describe_instances')
     page_iterator = paginator.paginate(

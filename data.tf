@@ -45,7 +45,9 @@ data "aws_iam_policy_document" "ec2_describe_policy_ami" {
     sid    = "CreateLogStream"
     actions = [
       "ec2:DeregisterImage*",
-      "autoscaling:DescribeLaunchConfigurations"
+      "ec2:DeleteSnapshot*",
+      "ec2:DeleteVolume*",
+      "autoscaling:DescribeLaunchConfiguration*"
     ]
     resources = ["*"]
   }
