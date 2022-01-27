@@ -12,9 +12,9 @@ Tomer Tcherniak
 This lambda stack contains:
 1) calculate volumes to be deleted:
    volumes with status available and more than num days can be deleted as they are not used by any instance
-2) calculate autoscaling to be deleted:
+2) calculate unused autoscaling:
    autoscaling groups which have no instances attached
-3) check reservation set up for each ec2 instance
+3) check reservation set up for each ec2 instance type
 4) calculate images to be deleted:  
    images which are not used by any instance or launch config and more than num days can be deleted
 ```
