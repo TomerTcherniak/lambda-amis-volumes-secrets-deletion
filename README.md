@@ -129,7 +129,9 @@ Terraform will perform the following actions:
                   + {
                       + Action   = [
                           + "ec2:DeregisterImage*",
-                          + "autoscaling:DescribeLaunchConfigurations",
+                          + "ec2:DeleteSnapshot*",
+                          + "ec2:DeleteVolume*",
+                          + "autoscaling:DescribeLaunchConfiguration*",
                         ]
                       + Effect   = "Allow"
                       + Resource = "*"
