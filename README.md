@@ -32,7 +32,7 @@ regions_arr : "Run on all the the regions whcih are set"
 
 # prerequisite
 
-Change self.slackurl = "https://hooks.slack.com/services/ChaneME" to a proper slack webhook url
+Change self.slackurl = "https://hooks.slack.com/services/ChangeME" to a proper slack webhook url
 
 # terraform version
 
