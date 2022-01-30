@@ -34,6 +34,20 @@ regions_arr : "Run on all the the regions whcih are set"
 
 Change self.slackurl = "https://hooks.slack.com/services/ChangeME" to a proper slack webhook url
 
+# run
+
+For smalll environments please set more than 1 region in regions_arr
+```
+variable "regions_arr" {
+  default     = "eu-west-1,eu-central-1,ap-southeast-2,us-east-1,us-west-2,us-east-2" #,us-east-2
+```
+As lambda support run only for 15 minutes
+```
+https://aws.amazon.com/about-aws/whats-new/2018/10/aws-lambda-supports-functions-that-can-run-up-to-15-minutes/
+```
+the run includes 1) calculate volumes to be deleted 2) calculate unused autoscaling 3) check reservation set up for each ec2 instance type 4) calculate images to be deleted
+Another option is to remark / disable the number of functions which are activated
+
 # terraform version
 
 Terraform v1.1.4

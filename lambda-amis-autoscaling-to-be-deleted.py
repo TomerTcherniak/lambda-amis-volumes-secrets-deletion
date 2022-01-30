@@ -28,7 +28,7 @@ def set_types():
 
 class Slack(object):
     def __init__(self):
-        self.slackurl = "https://hooks.slack.com/services/ChangeME"
+        self.slackurl = "https://hooks.slack.com/services/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"
         self.iconemoji = ":coin:"
         self.slackusername = "AMI Deletion / Reservation info"
 
@@ -38,7 +38,7 @@ class Slack(object):
     def post_data(self, message, headers={'Content-Type': 'application/json'}):
         print(message)
         values = {"username": self.slackusername,
-                  "text": message, "icon_emoji": self.iconemoji}
+                 "text": message, "icon_emoji": self.iconemoji}
         params = json.dumps(values).encode('utf8')
         req = request.Request(self.slackurl, params, headers)
         resp = request.urlopen(req)
@@ -61,11 +61,14 @@ def calculate_volumes_to_be_deleted(use_profile,days_count, AWS_REGION, delete_f
         ],
     )
     older_threshold_time = datetime.now() - timedelta(days=int(days_count))
-    older_threshold_time ='{0.month}/{0.day}/{0.year} {0.hour}:{0.minute}'.format(older_threshold_time)
+    s_older_threshold_time=datetime(older_threshold_time.year, older_threshold_time.month, older_threshold_time.day, 0, 0)
     vol_arr = []
     for volume_info in available_vol_response['Volumes']:
-        create_time = '{0.month}/{0.day}/{0.year} {0.hour}:{0.minute}'.format(volume_info['CreateTime'])
-        if  create_time < older_threshold_time:
+        s_create_time=datetime(volume_info['CreateTime'].year, volume_info['CreateTime'].month, volume_info['CreateTime'].day, 0, 0)
+        print (s_create_time)
+        print (s_older_threshold_time)
+        print (s_create_time < s_older_threshold_time)
+        if  s_create_time < s_older_threshold_time:
             try:
                 vol_arr.append(volume_info['VolumeId'] + ":" + str(volume_info['Size']) + ":" + str(volume_info['CreateTime']))
             except Exception as e:
