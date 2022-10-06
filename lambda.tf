@@ -11,7 +11,7 @@ resource "aws_lambda_function" "lambda" {
   role                           = aws_iam_role.iam_role.arn
   handler                        = "lambda-amis-autoscaling-to-be-deleted.lambda_handler"
   source_code_hash               = data.archive_file.init.output_base64sha256
-  runtime                        = "python3.6"
+  runtime                        = "python3.9"
   memory_size                    = var.memory_size
   timeout                        = var.timeout
   reserved_concurrent_executions = 1

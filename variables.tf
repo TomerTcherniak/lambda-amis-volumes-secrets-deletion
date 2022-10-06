@@ -21,17 +21,17 @@ variable "use_profile" {
 }
 
 variable "delete_flag" {
-  default = "true"
+  default = "false"
   description = "use deletion - used for debug"
 }
 
 
 variable "days_count" {
-  default     = 180
+  default     = 6
   description = "Images more than X days which are not used by any instance will be notify as not used."
 }
 
 variable "regions_arr" {
-  default     = "eu-west-1,eu-central-1,ap-southeast-2,us-east-1,us-west-2,us-east-2" #,us-east-2
+  default     = "eu-west-1"
   description = "run on all the below regions"
 }
