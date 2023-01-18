@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_role" {
-  name               = "lambda-amis-autoscaling-to-be-deleted-${var.region}-iam-role"
+  name               = "lambda-amis-volumes-secrets-deletion-${var.region}-iam-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_policy.json
 }
 

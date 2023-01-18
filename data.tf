@@ -31,9 +31,12 @@ data "aws_iam_policy_document" "ec2_policy_document" {
     effect = "Allow"
     sid    = "CreateLogStream"
     actions = [
-      "ec2:describe*",
-      "rds:Describe*",
-      "autoscaling:DescribeAutoScalingGroups"
+      "ec2:describe*",      
+      "ec2:DeregisterImage*",
+      "ec2:DeleteVolume",
+      "ec2:DeleteSnapshot",
+      "secretsmanager:DeleteSecret",
+      "secretsmanager:ListSecrets"
     ]
     resources = ["*"]
   }

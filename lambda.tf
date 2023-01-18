@@ -1,15 +1,15 @@
 data "archive_file" "init" {
   type        = "zip"
-  source_file = "./lambda-amis-autoscaling-to-be-deleted.py"
-  output_path = "${path.module}/lambda-amis-autoscaling-to-be-deleted.zip"
+  source_file = "./lambda-amis-volumes-secrets-deletion.py"
+  output_path = "${path.module}/lambda-amis-volumes-secrets-deletion.zip"
 }
 
 resource "aws_lambda_function" "lambda" {
-  filename                       = "${path.module}/lambda-amis-autoscaling-to-be-deleted.zip"
-  function_name                  = "lambda-amis-autoscaling-to-be-deleted"
+  filename                       = "${path.module}/lambda-amis-volumes-secrets-deletion.zip"
+  function_name                  = "lambda-amis-volumes-secrets-deletion"
   description                    = "Function for sre visibility channel"
   role                           = aws_iam_role.iam_role.arn
-  handler                        = "lambda-amis-autoscaling-to-be-deleted.lambda_handler"
+  handler                        = "lambda-amis-volumes-secrets-deletion.lambda_handler"
   source_code_hash               = data.archive_file.init.output_base64sha256
   runtime                        = "python3.9"
   memory_size                    = var.memory_size
