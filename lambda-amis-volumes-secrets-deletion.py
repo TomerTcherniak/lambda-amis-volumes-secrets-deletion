@@ -67,7 +67,7 @@ def calculate_volumes_to_be_deleted(aws_region):
             ec2_resource = boto3.resource('ec2', region_name=aws_region)
             volume_resource = ec2_resource.Volume(volume["VolumeId"])
             if  volume_resource.state == "available":
-                #volume_resource.delete()
+                volume_resource.delete()
                 log_print("Deleted Volume in {} {} , VolumeId {} , Size {} , CreateTime {} , Name {}".format(aws_region,account_id,volume["VolumeId"],volume["Size"],volume["CreateTime"],volume["Name"]))
 
 
@@ -104,7 +104,7 @@ def secret_deletion(aws_region):
                     delta = s_older_threshold_time - s_access_time
                     if delta.days < 0:
                         continue
-                    #client.delete_secret(SecretId=secret['Name'], RecoveryWindowInDays=10, ForceDeleteWithoutRecovery=False)
+                    client.delete_secret(SecretId=secret['Name'], RecoveryWindowInDays=10, ForceDeleteWithoutRecovery=False)
             except:
                 continue
         if 'NextToken' not in response:
@@ -155,10 +155,10 @@ def calculate_amis_to_be_deleted(aws_region):
                 if "ami" in image['ImageId']:
                     time.sleep(0.1)
                     log_print("Deleted AMI info {}".format(image_to_be_delete))
-                    #ec2_conn.deregister_image(ImageId=image['ImageId'])
+                    ec2_conn.deregister_image(ImageId=image['ImageId'])
                     for snapshot in snapshots:
                         if str(image['ImageId']) in snapshot['Description']:
-                            #ec2_conn.delete_snapshot(SnapshotId=snapshot['SnapshotId'])
+                            ec2_conn.delete_snapshot(SnapshotId=snapshot['SnapshotId'])
                             log_print("Deleted snapshot info {}".format(snapshot))
 
 def main(regions_arr):
