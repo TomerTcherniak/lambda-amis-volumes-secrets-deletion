@@ -2,7 +2,7 @@
 
 AWS lambda function
 
-# author
+# Author
 
 Tomer Tcherniak
 
@@ -26,5 +26,12 @@ For example:
 	64f63589-ae98-436b-b3bb-7f411bc4e6a1 Deleted Volume in eu-west-1 XXXXXXXXXXXX , VolumeId vol-123456789 , Size 8 , CreateTime 2023-01-07 23:32:00.071000+00:00 
 	64f63589-ae98-436b-b3bb-7f411bc4e6a1 Deleted Volume in eu-west-1 XXXXXXXXXXXX , VolumeId vol-987654321 , Size 8 , CreateTime 2023-01-12 06:07:22.500000+00:00 
 ```
-  
-  
+# IAM
+
+```
+Lambda has permissions to activate deletion for ami's , secrets and volumes.
+"ec2:DeregisterImage*",
+"ec2:DeleteVolume",
+"ec2:DeleteSnapshot",
+"secretsmanager:DeleteSecret"
+```  
